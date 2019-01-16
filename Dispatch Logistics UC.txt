@@ -43,8 +43,8 @@ DispatchRequest
 ---------------
 DispatchRequest::CreateRequest
 DispatchRequest::CancelRequest
-DispatchRequest::DropRequest  (When the requester selects his/her dispatcher of choice.)
-DispatchRequest::BookRequest
+DispatchRequest::DropRequest  
+DispatchRequest::BookRequest   (When the requester selects his/her dispatcher of choice.)
 DispatchRequest::PickupRequest (When dispatcher arrives at the requester's location)
 DispatchRequest::DropOffRequest 
 
