@@ -1,0 +1,157 @@
+Dispatch Logistics
+==================
+
+Models:
+------
+
+User > Admin > Dispatcher
+-------------------------
+User::Login
+User::LogOut
+User::Register
+User::ChangePassword(id)
+User::GetProfile(id)
+User::SendPasswordReset
+User::ChangePasswordReset
+
+
+Dispatcher::UpdateLocation(lat,lng,id)
+Dispatcher::GetWithinRadius(lat,lng,radius)
+
+Location
+--------
+Location::SearchLocationsByAddress(address)
+Location::GetLatLngFromAddress(locationAddress);
+Location::GetDistanceFromTwoLocations(lat1,lng1,lat2,lng2)
+
+Customer
+--------
+Customer::Login
+Customer::LogOut
+Customer::Register
+Customer::ChangePassword(id)
+Customer::GetProfile(id)
+Customer::SendPasswordReset
+Customer::ChangePasswordReset
+
+DispatchRequest
+---------------
+DispatchRequest::CreateRequest
+DispatchRequest::CancelRequest
+DispatchRequest::CheckRequest
+DispatchRequest::PickUpRequest
+DispatchRequest::ConfirmRequestAtPickup (When dispatcher arrives at the requester's location)
+DispatchRequest::ConfirmPaymentAtPickup (When payment is made by the requester at pickup)
+DispatchRequest::ConfirmPaymentAtDropOff (When payment is made through the dispatcher at dropoff)
+DispatchRequest::DropRequest
+DispatchRequest::ListPendingRequests
+DispatchRequest::ListCancelledRequests
+DispatchRequest::ListConfirmedRequests
+DispatchRequest::GetRequestById(id)
+
+DispatchRequestLog
+------------------
+DispatchRequestLog::LogRequest(dispatchRequestID,userID)
+
+
+
+Geocode API
+-----------
+https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyDgzNrN0i8WNwm3bOiWFeXt_bQFy4Vr5Vs&input=ajah
+
+
+Db-name:
+--------
+dbname: turboer1_db
+username: turboer1_user
+password: Gr;[ntX9sEkf
+
+
+
+user
+-----
+id
+parent_id (user-id) defaults to 0
+email
+password
+gender
+company_name
+company_logo
+passport
+username
+current_address
+lat
+lng
+date_created
+role (admin,admin-staff,dispatcher,company,company-staff)
+status
+charging_pattern (platform,rate-per-km,company-defined-rate)
+rate_per_km
+company_defined_rate
+dispatch_availability (free,booked)
+
+
+site_settings
+------------
+id
+charging_flat_rate
+
+
+customer
+--------
+id
+first_name
+middle_name
+surname
+gender
+email
+phone
+password
+status
+date_created
+address
+lat
+lng
+
+
+
+dispatch_request
+----------------
+id
+transaction_id
+requester_address
+requester_lat
+requester_lng
+pickup_address
+pickup_lat
+pickup_lng
+dropoff_address
+dropoff_lat
+dropoff_lng
+dispatch_description
+customer_id
+user_id (dispatcher)
+user_parent_id (dispatcher's company)
+dispatch_status =>(pending,dropped,booked,pickedup,droppedoff)
+payment_type =>(card,cash)
+payment_method =>(payment_before_dispatch,payment_after_dispatch)
+payment_status =>(pending,success)
+
+
+
+dispatch_log
+------------
+id
+dispatch_id
+dispatch_status :=> applies only to (dropped,booked,pickedup,droppedoff)
+user_id
+date_created
+lat
+lng
+address
+status=>(seen,pending)
+seen_by
+
+
+
+
