@@ -1,5 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=XXXXXXXXXXXXXXXXXXXXXXXXXXXX&libraries=geometry"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&libraries=geometry"></script>
 <!-- https://maps.googleapis.com/maps/api/js -->
 <!-- AIzaSyDgzNrN0i8WNwm3bOiWFeXt_bQFy4Vr5Vs -->
 <!-- &callback=initMap -->
@@ -317,6 +325,9 @@
 
     ////AddMarkers
     EventBus.Subscribe('AddMarkers',function(config){
+       
+          EventBus.Notify('MapRemoveMarkers');  
+
            var lat_lng = [];
 
 
@@ -413,7 +424,12 @@
       for (var i = 0; i < geo.markers.length; i++) {
        geo.bounds.extend(geo.markers[i].getPosition());
       }
-      geo.map.fitBounds(geo.bounds);      
+      geo.map.fitBounds(geo.bounds);    
+
+// map.fitBounds(bounds);
+      var zoom = geo.map.getZoom();
+      geo.map.setZoom(zoom > 6 ? 6 : zoom);
+
     });
 
     EventBus.Subscribe('MapComputeDistance',function(config){
@@ -715,7 +731,10 @@
 
         // EventBus.Notify('ZoomMap',{
         //   zoom:15
-        // });          
+        // });   
+
+
+
 
 
           EventBus.Notify('AddMarkers',{
@@ -822,22 +841,32 @@
     background-color: #329832;
     color: #fff;
   }  
+
+
+  @media(max-width: 768px){
+
+     .handle-mobile{
+      width: 80% !important;
+     }
+
+  }
 </style>
 
 
-<div style="position: relative;top: -74%;margin-left: 11px;background-color: rgba(0,0,0,0.2);padding: 11px;width: 30%;">
 
-  <input type="text" id="pickup" name="search" placeholder="PICKUP LOCATION" style="display: inline-block;padding: 9px;border: 1px solid #777;width: 100%;">
+<div class="handle-mobile" style="position: absolute;top: 12%;margin-left: 11px;background-color: rgba(0,0,0,0.2);padding: 11px;width: 30%;">
+
+  <input type="text" id="pickup" name="search" placeholder="PICKUP LOCATION" style="display: inline-block;padding: 9px;border: 1px solid #777;width: 90%;">
 
 
-  <input type="text" id="dropoff" name="search" placeholder="DROPOFF LOCATION" style="display: inline-block;padding: 9px;border: 1px solid #777;width: 89%;margin-top: 11px;">
+  <input type="text" id="dropoff" name="search" placeholder="DROPOFF LOCATION" style="display: inline-block;padding: 9px;border: 1px solid #777;width: 80%;margin-top: 11px;">
 
    <span style="
     background-color: #000;
-    padding: 10px;
+    padding: 7px;
     display: inline-block;
     position: relative;
-    top: 4px;
+    top: 2px;
 ">
 <svg viewBox="0 0 64 64" width="16px" height="16px" class=" _style_26XEsq" data-reactid="401" style="
     color: #fff;
@@ -846,7 +875,7 @@
    </span>
 
    <div id="ajax-status" style="display: none;">
-     <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/35771931234507.564a1d2403b3a.gif" style="height: 21px;" />
+     <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/35771931234507.564a1d2403b3a.gif" style="height: 21px;">
    </div>
    
    <div id="predictions-list" style="
@@ -857,14 +886,12 @@
     display: none;
 "></div>
 
-   <div id="measured_distance" style="
-    background-color: #000;
-    color: #fff;
-    margin-top: 3px;
-    padding: 3px;
-    display: none;
-">
-   </div>
+   <div id="measured_distance" style="background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); margin-top: 3px; padding: 3px;">Total Distance Coverred (KM) : 22.92</div>
 
 
 </div>
+
+
+
+</body>
+</html>
