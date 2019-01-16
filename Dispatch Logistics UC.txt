@@ -13,16 +13,20 @@ User::ChangePassword(id)
 User::GetProfile(id)
 User::SendPasswordReset
 User::ChangePasswordReset
+User::UpdateProfile
+
+User::UpdateCompanyLogo
+User::UpdatePassport
 
 
-Dispatcher::UpdateLocation(lat,lng,id)
-Dispatcher::GetWithinRadius(lat,lng,radius)
+User::UpdateLocation(lat,lng,id)
+User::GetDispatchWithinRadius(lat,lng,radius)
 
-Location
---------
-Location::SearchLocationsByAddress(address)
-Location::GetLatLngFromAddress(locationAddress);
-Location::GetDistanceFromTwoLocations(lat1,lng1,lat2,lng2)
+//Location
+//--------
+//Location::SearchLocationsByAddress(address)
+//Location::GetLatLngFromAddress(locationAddress);
+//Location::GetDistanceFromTwoLocations(lat1,lng1,lat2,lng2)
 
 Customer
 --------
@@ -33,25 +37,34 @@ Customer::ChangePassword(id)
 Customer::GetProfile(id)
 Customer::SendPasswordReset
 Customer::ChangePasswordReset
+Custoemr::UpdateProfile
 
 DispatchRequest
 ---------------
 DispatchRequest::CreateRequest
 DispatchRequest::CancelRequest
-DispatchRequest::CheckRequest
-DispatchRequest::PickUpRequest
-DispatchRequest::ConfirmRequestAtPickup (When dispatcher arrives at the requester's location)
-DispatchRequest::ConfirmPaymentAtPickup (When payment is made by the requester at pickup)
-DispatchRequest::ConfirmPaymentAtDropOff (When payment is made through the dispatcher at dropoff)
-DispatchRequest::DropRequest
-DispatchRequest::ListPendingRequests
-DispatchRequest::ListCancelledRequests
-DispatchRequest::ListConfirmedRequests
+DispatchRequest::DropRequest  (When the requester selects his/her dispatcher of choice.)
+DispatchRequest::BookRequest
+DispatchRequest::PickupRequest (When dispatcher arrives at the requester's location)
+DispatchRequest::DropOffRequest 
+
+DispatchRequest::ConfirmPaymentAsCard
+DispatchRequest::ConfirmPaymentAsCash
+
+DispatchRequest::ListRequests
+
+DispatchRequest::FilterDropped
+DispatchRequest::FilterBooked
+DispatchRequest::FilterPicked
+DispatchRequest::FilterDroppedOff
+DispatchRequest::FilterCardPayment
+DispatchRequest::FilterCashPayment
+
 DispatchRequest::GetRequestById(id)
 
-DispatchRequestLog
+DispatchLog
 ------------------
-DispatchRequestLog::LogRequest(dispatchRequestID,userID)
+DispatchRequestLog::LogRequest()
 
 
 
